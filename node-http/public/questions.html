@@ -1,0 +1,149 @@
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<script src="bower_components/jquery/dist/jquery.min.js"></script>
+		<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+		<script src="bower_components/angular/angular.min.js"></script>
+		<script src="bower_components/angular-route/angular-route.js"></script>
+		<script src="js/myApp.js"></script>
+		<script src="js/que-script.js"></script>
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/bootstrap-social.css" rel="stylesheet">
+		<link href="css/bootstrap-theme.min.css" rel="stylesheet">
+		<link href="css/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
+		<link href="css/app.css" rel="stylesheet">
+		<link href="css/que-style.css" rel="stylesheet">
+	</head>
+	<body>
+	<div class="topnav" id="myTopnav">
+			    <a href="index.html" class="active">INQUISITIVE MINDS</a>
+                <a href="questions.html">Home</a>
+                <a href="profile.html">Profile</a>
+				<a href="feedback.html">Contact Us</a>
+				<a href="index.html" style="float:right">Logout</a>
+				<a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
+			</div>
+
+<script>
+function myFunction() {
+    var x = document.getElementById("myTopnav");
+    if (x.className === "topnav") {
+        x.className += " responsive";
+    } else {
+        x.className = "topnav";
+    }
+}
+</script>
+	<div class="container clearfix">
+		<div class="row">
+				<div class="col-xs-12">
+					 <ul class="breadcrumb">
+							 <li  class="active"><a href="questions.html">Home</a></li>
+							 <li><a href="profile.html">Profile</a></li>
+							 <li><a href="feedback.html">Contact Us</a></li>
+					 </ul>
+				</div>
+				<div class="col-xs-12">
+					 <h3>Query Us</h3>
+					 <hr>
+				</div>
+		</div>
+				<div class="people-list" id="people-list">
+						<ul class="list">
+						</ul>
+				</div>
+				<div class="chat">
+						<div class="chat-header clearfix">
+								<div class="chat-about">
+										<div class="chat-with">ChatEngine Demo Chat</div>
+								</div>
+						</div>
+						<div class="chat-history">
+								<ul></ul>
+						</div>
+						<form id="sendMessage" class="chat-message clearfix">
+								<input type="text" name="message-to-send" id="message-to-send" placeholder="Type your message" rows="1"></input>
+								<input type="submit" value="Send"></input>
+						</form>
+						<!-- end chat-message -->
+				</div>
+				<!-- end chat -->
+		</div>
+		<!-- end container -->
+		<script id="message-template" type="text/x-handlebars-template">
+				<li class="clearfix">
+						<div class="message-data align-right">
+								<span class="message-data-time">{{time}}, Today</span> &nbsp; &nbsp;
+								<span class="message-data-name">{{user.first}}</span> <i class="fa fa-circle me"></i>
+						</div>
+						<div class="message other-message float-right">
+								{{messageOutput}}
+						</div>
+				</li>
+		</script>
+		<script id="message-response-template" type="text/x-handlebars-template">
+				<li>
+						<div class="message-data">
+								<span class="message-data-name"><i class="fa fa-circle online"></i> {{user.first}}</span>
+								<span class="message-data-time">{{time}}, Today</span>
+						</div>
+						<div class="message my-message">
+								{{messageOutput}}
+						</div>
+				</li>
+		</script>
+		<script id="person-template" type="text/x-handlebars-template">
+				{{#if state.full}}
+				<li class="clearfix" id="{{uuid}}">
+						<img src="{{state.avatar}}" alt="avatar" />
+						<div class="about">
+								<div class="name">{{state.full}}</div>
+								<div class="status">
+										<i class="fa fa-circle online"></i> online
+								</div>
+						</div>
+				</li>
+				{{/if}}
+		</script>
+
+
+	<footer class="footerFormat">
+				<div class="row">
+					<div class="col-sm-12 col-xs-12">
+						<div class="col-xs-12 col-sm-2 col-sm-offset-1">
+							<h5>Links</h5>
+							<ol class="list-unstyled listFormat">
+							<!--	<li><a href="#">About</a></li>
+								<li><a href="#">FAQs</a></li>-->
+										<li><a href="questions.html">Home</a></li>
+										<li><a href="profile.html">Profile</a></li>
+										<li><a href="feedback.html">Contact</a></li>
+							</ol>
+						</div>
+						<div class="col-xs-3 col-sm-5">
+							<ol class="list-unstyled ">
+								<li><a href="#"></a></li>
+								<li><a href="#"></a></li>
+								<li><a href="#"></a></li>
+								<li><a href="#"></a></li>
+							</ol>
+						</div>
+						<div class="col-xs-12 col-sm-4">
+							 <!--<div class="nav navbar-nav" style="padding: 40px 10px;">-->
+								<a class="btn btn-social-icon btn-facebook" href="http://www.facebook.com/profile.php?id="><i class="fa fa-facebook fa-2x"></i></a>
+								<a class="btn btn-social-icon btn-twitter" href="http://twitter.com/"><i class="fa fa-twitter fa-2x"></i></a>
+								<a class="btn btn-social-icon btn-whatsapp" href="http://whatsapp.com/"><i class="fa fa-whatsapp fa-2x"></i></a>
+								<a class="btn btn-social-icon btn-youtube" href="http://youtube.com/"><i class="fa fa-youtube fa-2x"></i></a>
+							</div>
+						</div>
+
+					</div>
+				</div>
+                <div class="col-xs-12">
+                    <p align=center>© Copyright</p>
+                </div>
+
+    </footer>
+	</body>
+	</html>

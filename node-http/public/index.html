@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="quoraApp">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<script src="bower_components/jquery/dist/jquery.min.js"></script>
+		<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+		<script src="bower_components/angular/angular.min.js"></script>
+		<script src="bower_components/angular-route/angular-route.js"></script>
+		<script src="js/myApp.js"></script>
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/bootstrap-social.css" rel="stylesheet">
+		<link href="css/bootstrap-theme.min.css" rel="stylesheet">
+		<link href="css/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
+		<link href="css/app.css" rel="stylesheet">
+	</head>
+	<body>
+			<div class="topnav" id="myTopnav">
+			  <a href="index.html" class="active">INQUISITIVE MINDS</a>
+        <a href="aboutus.html">About Us</a>
+				<a href="terms.html">Terms and Conditions</a>
+				<a href="FAQs.html">FAQs</a>
+				<a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
+			</div>
+
+     <script>
+            function myFunction() {
+            var x = document.getElementById("myTopnav");
+            if (x.className === "topnav") {
+            x.className += " responsive";
+            } else {
+            x.className = "topnav";
+            }
+           }
+     </script>
+
+	<header class = "headerFormat">
+			<!-- Main component of the header-->
+				<div class="container-fluid myContainer">
+					<div class="row row-header">
+						<div class="logo">
+							INQUISTIVE MINDS
+							<!--<img class="img-logo" align="center" src="C:\Users\welcome\Desktop\BVQuora\tph.jpg">-->
+						</div>
+					<div class="col-xs-12">
+					 <div id="mycarousel" class="carousel slide" data-ride="carousel">
+												 <!-- Indicators -->
+							 <ol class="carousel-indicators">
+									 <li data-target="#mycarousel" data-slide-to="0" class="active"></li>
+									 <li data-target="#mycarousel" data-slide-to="1"></li>
+									 <li data-target="#mycarousel" data-slide-to="2"></li>
+							 </ol>
+
+										 <!-- Wrapper for slides -->
+							 <div class="carousel-inner" role="listbox">
+									 <div class="item active">
+											 <img class="img-responsive img-logo"
+												src="images/first.gif" alt="first">
+											 <div class="carousel-caption">
+											 <h1>Query Users</h1>
+											<p class="ex3">Register yourself and satiate your curiosity.<p>
+											 </div>
+							 </div>
+									 <div class="item">
+												<img class="img-responsive img-logo"
+												src="images/second.gif" alt="second">
+											 <div class="carousel-caption">
+					                       <h1>Reply Users</h1>
+												<p class="ex3">Do ample amount of BrainStorming and answer others queries.</p>
+											 </div>
+									 </div>
+									 <div class="item">
+												<img class="img-responsive img-logo"
+												src="images/third.gif" alt="third">
+										<div class="carousel-caption">
+											 <h1>Features</h1>
+											 <p class="ex3">Also upload pdfs, doc files or ppts in reference to your answers.Comment or like others answer.</p>
+									     </div>
+									</div>
+							 </div>
+							 </div>
+							 <!-- Controls -->
+                             <!-- <div class="btn-group" id="carouselButtons">
+									 <button class="btn btn-danger btn-sm" id="carousel-pause">
+										 <span class="fa fa-pause" aria-hidden="true"></span>
+									 </button>
+									 <button class="btn btn-danger btn-sm" id="carousel-play">
+										 <span class="fa fa-play" aria-hidden="true"></span>
+									 </button>
+							 </div>-->
+
+					 </div>
+						<div class ="btn-group-horizontal buttons">
+							<button onclick="document.getElementById('signup').style.display='block'" type="button" class="btn btn-default btn-default-xl round btn-default-space signup">SIGN UP</button>
+							<div  id="signup" class="modal" ng-controller="SignUpFormController">
+							<!--	<span onclick="document.getElementById('signup').style.display='none'" class="close" title="Close Modal">&times;</span>-->
+								<form class="modal-content animate" name="signUpForm" ng-submit="submitSignUp()" novalidate>
+								<div class="modal-header">
+									<button type="button" class="close" title="Close Modal" onclick="document.getElementById('signup').style.display='none'">&times;</button>
+									<h3 class="modal-title" align="center">REGISTER NOW!</h3>
+								</div>
+									<div class="container container-buttons">
+									<div class="modal-body">
+
+										<div ng-class="{ 'has-error': (errUserName) || (signUpForm.username.$invalid && !signUpForm.username.$pristine) }" class="col-xs-12" align="left">
+											<input type="text" placeholder="Username" name="username" id="username" ng-model="username" ng-required="true"/>
+											<span ng-show="signUpForm.username.$invalid && !signUpForm.username.$pristine" class="help-block col-xs-12">Username is required</span>
+											<span ng-show="errUserName" class="help-block">{{errUserName}}</span>
+											<span class="help-block" ng-show="signUpForm.username.$invalid  && !signUpForm.username.$pristine">Username should be atleast 8 character long</span>
+										</div>
+										<div class="col-xs-12" align="left" style="padding-top:10px;">
+											<input type="email" placeholder="Phone or Email" name="email" id-"email" ng-model="email" ng-required="true"/>
+											<span ng-show="signUpForm.email.$error.required && !signUpForm.email.$pristine" class="help-block">Email is required</span>
+											<span ng-show="signUpForm.email.$error.email && !signUpForm.email.$pristine" class="help-block">Not a valid email id!</span>
+											<span ng-show="errEmail" class="help-block">{{errEmail}}</span>
+										</div>
+
+										<div class="form-group col-xs-12" ng-class="{ 'has-error': (errPassword) || (signUpForm.password.$invalid && !signUpForm.password.$pristine) }" align="left" style="padding-top:10px;">
+											<input type="password" placeholder="Password" ng-model="password" name="password" id="password" ng-minlength="8" ng-maxlength="14" ng-required="true"/>
+											<span ng-show="signUpForm.password.$invalid && !signUpForm.password.$pristine" class="help-block">Password is required</span>
+											<span class="help-block" ng-show="signUpForm.password.$invalid && !signUpForm.username.$pristine">Password should be atleast 8 character and atmost 14 character long.Should have alphanumeric data.</span>
+											<span ng-show="errPassword" class="help-block">{{errPassword}}</span>
+											<div ng-class="{ 'has-error' : signUpForm.passwordConfirm.$dirty}"  align="left" style="padding-top:10px;">
+											<input type="password" ng-if="password" ng-model="passwordConfirm" placeholder="Confirm Password" name="passwordConfirm" id="passwordConfirm">
+											<span ng-show="signUpForm.passwordConfirm.$dirty && signUpForm.passwordConfirm.$error.pwmatch" class="help-block">Password not same</span>
+											</div>
+										</div>
+										<div class="col-xs-12" align="left" style="padding-top:10px;padding-left:90px;">
+											<button type="submit" ng-disabled="signUpForm.$invalid" ng-click="register(user)" class="btn btn-primary rounded">REGISTER</button></div>
+										</div>
+									</div>
+								</form>
+							</div>
+
+								<button onclick="document.getElementById('signin').style.display='block'" type="button" class="btn btn-default btn-default-xl round btn-default-space signin">SIGN IN</button>
+							<!-- Modal Content -->
+							<div ng-controller="SignInFormController" id="signin" class="modal">
+							<form name="signInForm" class="modal-content animate" ng-submit="register(user)" novalidate>
+								<div class="modal-header">
+									<button type="button" class="close" title="Close Modal" onclick="document.getElementById('signin').style.display='none'">&times;</button>
+									<h3 class="modal-title">Sign In!</h3>
+								</div>
+								<div class="container container-buttons">
+									<div class="modal-body">
+									<div class="col-sm-12 col-xs-12">
+
+										<div class="col-sm-4 form-bg">
+											<div class="col-xs-12"  align="left" style="padding-top:10px;">
+												<input type="text" placeholder="Enter Username" name="username" ng-model="username" ng-required="true"/>
+												<span class="help-block" ng-show="signInForm.username.$invalid && !signInForm.username.$pristine" style="font-size:12px;">Username is required</span>
+											</div>
+											<div class="col-xs-12" align="left" style="padding-top:10px;">
+												<input type="password" placeholder="Enter Password" name="password" ng-model="password" ng-required="true"/>
+												<span ng-show="signInForm.password.$invalid && !signInForm.password.$pristine" class="help-block" style="font-size:12px;">Password is required</span>
+											</div>
+											<div class="col-xs-12" align="left" style="font-size:12px">
+												<span class="psw">Forgot <a href="#">password?</a></span></div>
+											<div class="col-xs-12" align="left" style="padding-left:110px;padding-top:10px;">
+												<button ng-click="register(user)" type="submit" class="btn btn-success rounded">SignIn</button>
+											</div>
+											<div ng-if ="error" ng-cloak class="alert alert-danger col-sm-5 col-xs-12" align="left" style="font-size:12px;">
+												<strong>Error!</strong> Username or password did not match.
+											</div>
+											<div class="col-xs-12" align="left" style="font-size:12px; padding-top:5px;">
+
+											</div>
+									</div>
+								</div>
+								</div>
+							</form>
+						</div>
+						</div>
+						</div>
+					</div>
+				</div>
+			</header>
+			<footer class="footerFormat">
+				<div class="row">
+					<div class="col-sm-12 col-xs-12">
+						<div class="col-xs-12 col-sm-2 col-sm-offset-1">
+							<h5>Links</h5>
+							<ol class="list-unstyled listFormat">
+							<!--	<li><a href="#">About</a></li>
+								<li><a href="#">FAQs</a></li>-->
+								<li><a href="aboutus.html">About Us</a></li>
+								<li><a href="terms.html">Terms and Conditions</a></li>
+								<li><a href="FAQs.html">FAQs</a></li>
+							</ol>
+						</div>
+						<div class="col-xs-3 col-sm-5">
+							<ol class="list-unstyled ">
+								<li><a href="#"></a></li>
+								<li><a href="#"></a></li>
+								<li><a href="#"></a></li>
+								<li><a href="#"></a></li>
+							</ol>
+						</div>
+						<div class="col-xs-12 col-sm-4">
+							 <!--<div class="nav navbar-nav" style="padding: 40px 10px;">-->
+								<a class="btn btn-social-icon btn-facebook" href="http://www.facebook.com/profile.php?id="><i class="fa fa-facebook fa-2x"></i></a>
+								<a class="btn btn-social-icon btn-twitter" href="http://twitter.com/"><i class="fa fa-twitter fa-2x"></i></a>
+								<a class="btn btn-social-icon btn-whatsapp" href="http://whatsapp.com/"><i class="fa fa-whatsapp fa-2x"></i></a>
+								<a class="btn btn-social-icon btn-youtube" href="http://youtube.com/"><i class="fa fa-youtube fa-2x"></i></a>
+							</div>
+						</div>
+
+					</div>
+				</div>
+                <div class="col-xs-12">
+                    <p align=center>© Copyright</p>
+                </div>
+
+    </footer>
+
+
+		<script>
+		var modal = document.getElementById('signin');
+		window.onclick = function(event) {
+			if (event.target == modal) {
+					modal.style.display = "none";
+				}
+			}
+			var mod = document.getElementById('signup');
+			window.onclick = function(event) {
+					if (event.target == mod) {
+						mod.style.display = "none";
+					}
+				}
+		</script>
+    </body>
+</html>

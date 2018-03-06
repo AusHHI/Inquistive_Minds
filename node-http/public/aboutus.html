@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="quoraApp">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<script src="bower_components/jquery/dist/jquery.min.js"></script>
+		<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+		<script src="bower_components/angular/angular.min.js"></script>
+		<script src="bower_components/angular-route/angular-route.js"></script>
+		<script src="myApp.js"></script>
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/bootstrap-social.css" rel="stylesheet">
+		<link href="css/bootstrap-theme.min.css" rel="stylesheet">
+		<link href="css/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
+		<link href="css/app.css" rel="stylesheet">
+	</head>
+<body>
+
+<div class="topnav" id="myTopnav">
+			    <a href="index.html" >INQUISITIVE MINDS</a>
+                <a href="aboutus.html" class="active">About Us</a>
+				<a href="terms.html">Terms and Conditions</a>
+				<a href="FAQs.html">FAQs</a>
+				<a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
+			</div>
+
+<script>
+function myFunction() {
+    var x = document.getElementById("myTopnav");
+    if (x.className === "topnav") {
+        x.className += " responsive";
+    } else {
+        x.className = "topnav";
+    }
+}
+</script>
+
+<h2> ABOUT US</h2><br>
+
+<div class="col-xs-12">
+					 <div id="mycarousel" class="carousel slide" data-ride="carousel">
+												 <!-- Indicators -->
+							 <ol class="carousel-indicators">
+									 <li data-target="#mycarousel" data-slide-to="0" class="active"></li>
+									 <li data-target="#mycarousel" data-slide-to="1"></li>
+									 <li data-target="#mycarousel" data-slide-to="2"></li>
+							 </ol>
+
+										 <!-- Wrapper for slides -->
+							 <div class="carousel-inner" role="listbox">
+									 <div class="item active">
+											 <img class="img-responsive img-logo"
+												src="images/tph.jpg" alt="first">
+											 <div class="carousel-caption">
+											 <h1>Query Users</h1>
+											<p class="ex3">Register yourself and satiate your curiosity.<p>
+											 </div>
+							 </div>
+									 <div class="item">
+												<img class="img-responsive img-logo"
+												src="images/four.gif." alt="second">
+											 <div class="carousel-caption">
+					                       <h1>Reply Users</h1>
+										<p class="ex3">Do ample amount of BrainStorming and answer others queries.</p>
+											 </div>
+									 </div>
+									 <div class="item">
+												<img class="img-responsive img-logo"
+												src="images/download.jpg" alt="third">
+										<div class="carousel-caption">
+											 <h1>Features</h1>
+											 <p class="ex3">Also upload pdfs, doc files or ppts in reference to your answers.Comment or like others answer.</p>
+									     </div>
+									</div>
+							 </div>
+							 </div>
+							 <!-- Controls -->
+                             <!-- <div class="btn-group" id="carouselButtons">
+									 <button class="btn btn-danger btn-sm" id="carousel-pause">
+										 <span class="fa fa-pause" aria-hidden="true"></span>
+									 </button>
+									 <button class="btn btn-danger btn-sm" id="carousel-play">
+										 <span class="fa fa-play" aria-hidden="true"></span>
+									 </button>
+							 </div>-->
+
+					 </div>
+
+<p class="ex1">
+     “Inquisitive Minds” offers you an amazing platform to put forth your queries, dilemmas and confusion and resolve them.
+	 It also offers a stage to showcase your knowledge and help others with your skills.<br>
+
+     Inquisitive minds mission is to empower organizations by connecting them with the information they need to make better-informed decisions.
+     Whether you need to know the answer to a burning question, or you're bursting with knowledgeable answers and experiences you can't wait to share,
+	 Inquisitive minds will provide you with the answers you are looking for.
+	 You might be looking for a factual answer or you might be looking for other people's experiences to help you - we aim to provide both.<br><br>
+     <b>One Great Collective Updatable Answer - The Opinions Of Many - All in One Place</b>
+</p>
+</body>
+</html>
