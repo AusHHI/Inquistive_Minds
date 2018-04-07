@@ -9,6 +9,7 @@
 	   Statement st=con.createStatement();
 	   ResultSet rs;
 %>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -28,13 +29,14 @@
       <body>
 	 			<div class="topnav" id="myTopnav">
 			    <a href="index.html" >INQUISITIVE MINDS</a>
-                <a href="questions.html">Home</a>
-                <a href="profile.html" class="active">Profile</a>
-				<a href="feedback.html">Contact Us</a>
+                <a href="questions.jsp">Home</a>
+				<a href="history.jsp">ActivityLog</a>
+                <a href="profile.jsp" class="active">Profile</a>
+				<a href="feedback.jsp">Contact Us</a>
 				
 				
 				
-				<a href="profile.jsp" style="float:right;margin-right:2px">
+				<a href="myprofile.jsp" style="float:right;margin-right:2px">
 				
 				
 				<% rs=st.executeQuery("select U_name from user_det where Email='"+Email+"'");
@@ -46,7 +48,7 @@
 				}
 				else
 				{
-					out.write("under div3");
+					out.write("none");
 				}
 				%>
 				
@@ -79,49 +81,78 @@ function myFunction() {
           </div>
       </div>-->
 	  <div class="container text-center" style="padding-top:20px;margin-top:20px">
-				<form action="proret.jsp"  method="post">
-				<fieldset>
-                <legend><p>Your General Details</p></legend>
+				
+               
+				<legend><p>Your General Details</p></legend>
 				<label for="image">Profile Picture:</label>
 				<div align="center" style="padding-bottom:20px">
 					<input type="file" onchange="previewFile()"><br>
 					<img height="200px" alt="Image preview..."/></input>
 				</div>
+				
+							
+									
+									<!--% rs=st.executeQuery("select P_path from user_det where Email='"+Email+"'");
+								
+							%-->
+									<!--%while(rs.next()){%-->
+								
+										<!--% if(rs.getString(1)!=null){
+                %-->
+								<!--Include the image here-->
+								<!--%=rs.getString(1)%-->
+						
+						<!--% }
+						// if closes 
+						else{
+							out.write("U haven't uploaded a profile photo yet");
+						}
+						%-->
+						<!--%} //while loop ends %-->
+
+				
+				
+				<form action="proret.jsp"  name="profileUpdate" method="get">
+				<fieldset>
                 <p><label for="name">Name:</label>
 					<input type="text" id="name" name="name" placeholder="Your full name" required></input></p><br>
                 <p><label for="gen">Gender:</label>
-					<input type="radio" id="gen" name="gender" value="M" required>Male</input>
-					<input type ="radio" id="gen" name="gender" value="F" required>Female</input></p><br>
+					<input type="radio" id="gen" name="Gender" value="M" required>Male</input>
+					<input type ="radio" id="gen" name="Gender" value="F" required>Female</input></p><br>
                 <p><label for="birth">Date of Birth:</label>
-					<input type="date" name="dob" id="birth" min="1970-12-31" max="2002-12-31"></input></p><br>
+					<input type="date" name="DOB" id="birth" min="1970-12-31" max="2002-12-31"></input></p><br>
       </fieldset>
         <fieldset>
               <legend>Your Contact Information</legend>
               <br>
               <p>
                     <label for="tel">Mobile:</label>
-                    <input type="tel" id="tel" name="tel" pattern="^\d{10}$" required></input>
+                    <input type="tel" id="Phone" name="Phone" pattern="^\d{10}$" required></input>
               </p>
               <br>
           </fieldset>
-                    <input type="submit" class="btn btn-info" name="Submit"></input>
+                    <input type="submit" class="btn btn-info" value="Update">
 					<!---Update Password-->
-					<button onclick="document.getElementById('password').style.display='block'"class="btn btn-warning text-right" type="button">Forget Password?</button>
+					<button onclick="document.getElementById('password').style.display='block'"class="btn btn-warning text-right" type="button">Update Password</button>
 				<!--modal-->
+				</form>
+				<form action="Passup.jsp" name="updatePass" method="get">
 				<div id="password" class="modal">
 								<div class="modal-content">
 									<div class="container">
 										<span onclick="document.getElementById('password').style.display='none'" class="close text-right">&times;</span>
 											<div class="modal-body">
 											<p><label for="oldPaa">Old Password:</label>
-					<input type="text" id="oldPaa" name="oldPaa" placeholder="Old Password" required></input></p><br>
+					<input type="password" id="oldPaa" name="oldPaa" placeholder="Old Password" required></input></p><br>
 					<p><label for="newPaa">New Password:</label>
-					<input type="text" id="newPaa" name="newPaa" placeholder="New Password" required></input></p><br>
+					<input type="password" id="newPaa" name="newPaa" placeholder="New Password" required></input></p><br>
+					<input type="submit" class="btn btn-success" value="Change_Password">
 											</div>
 									</div>
+					
 								</div>
 							</div>
-          </form>
+          
 		 </div>
 		 
 		 <footer class="footerFormat">
@@ -130,7 +161,7 @@ function myFunction() {
 						<div class="col-xs-12 col-sm-2 col-sm-offset-1">
 							<h5>Links</h5>
 							<ol class="list-unstyled listFormat">
-										<li><a href="aboutus.html">About us</a></li>
+										<li><a href="aboutus.jsp">About us</a></li>
 										<li><a href="FAQs.html">FAQs</a></li>
 										<li><a href="terms.html">Terms&Conditions </a></li>
 							</ol>
@@ -157,7 +188,6 @@ function myFunction() {
 
     </footer>
 		 
-		 
 		 <script>
 			function previewFile(){
 				var preview = document.querySelector('img');
@@ -173,20 +203,15 @@ function myFunction() {
 				}
 			}
 			
-			
-			
 		 </script>
 		 
 		 <% 
-	con.close();
-	
+		 con.close();
 	   }
-	   
 	   catch(Exception ex)
                        {
                       ex.printStackTrace();
-                        }
-						
+                        }				
 %>		
 		 
     </body>

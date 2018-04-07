@@ -23,19 +23,18 @@
 		<link href="css/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
 		<link href="css/bootstrap-social.css" rel="stylesheet">
 		<link href="css/app.css" rel="stylesheet">
-    <script src="bower_components/jquery/dist/jquery.min.js"></script>
-		<script src="bower_components/angular/angular.min.js"></script>
-		<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+		<script src="js/angular.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
 	</head>
 <body>
 	<div class="topnav" id="myTopnav">
 			    <a href="index.html">INQUISITIVE MINDS</a>
-                <a href="questions.html">Home</a>
-				<a href="history.html">History</a>
-                <a href="profile.html">Profile</a>
-				<a href="feedback.html" class="active">Contact Us</a>
-				<a href="index.html" style="float:right">Logout</a>
-				<a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
+                <a href="questions.jsp">Home</a>
+				<a href="history.jsp">ActivityLog</a>
+                <a href="profile.jsp">Profile</a>
+				<a href="feedback.jsp" class="active">Contact Us</a>
+				<a href="myprofile.jsp" style="float:right;margin-right:2px">
 				
 				
 				<% rs=st.executeQuery("select U_name from user_det where Email='"+Email+"'");
@@ -50,6 +49,24 @@
 					out.write("under div3");
 				}
 				%>
+				
+				</a>
+				<a href="logout.jsp" style="float:right;margin-left:2px;">Logout</a>
+				<a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
+				
+				
+				<!--% rs=st.executeQuery("select U_name from user_det where Email='"+Email+"'");
+				if(rs.next())
+				{
+				%-->
+				<strong>WELCOME :<!--%=rs.getString(1)%--></strong>
+				<!--%
+				}
+				else
+				{
+					out.write("under div3");
+				}
+				%-->
 				
 				
 				
@@ -89,9 +106,9 @@ function myFunction() {
         <div class="row">
             <div class="col-xs-12">
                <ul class="breadcrumb">
-                   <li><a href="questions.html">Home</a></li>
-				           <li><a href="profile.html">Profile</a></li>
-                   <li class="active"><a href="feedback.html">Contact Us</a></li>
+                   <li><a href="questions.jsp">Home</a></li>
+				           <li><a href="profile.jsp">Profile</a></li>
+                   <li class="active"><a href="feedback.jsp">Contact Us</a></li>
                </ul>
             </div>
             <div class="col-xs-12">
@@ -119,9 +136,9 @@ function myFunction() {
             <div class="col-xs-12 col-sm-6 col-sm-offset-1">
                 <h5>Map of our Location</h5>
 				  <div class="media-center media-middle">
-                        <a href="mappie.htm">
-                      <!--  <img class="media-object img-thumbnail"
-                         src="images/map.png" alt="Map">-->
+                         <a href="mappie.html">
+                      <img class="media-object img-thumbnail img-logo"
+                         src="images/map.png" alt="Map">
                         </a>
                     </div>
 
@@ -129,8 +146,6 @@ function myFunction() {
             <div class="col-xs-12 col-sm-11 col-sm-offset-1">
                 <div class="btn-group" role="group" aria-label="...">
                     <a type="button" class="btn btn-primary" href="tel:+85212345678"><i class="fa fa-phone"></i> Call</a>
-                    <a type="button" class="btn btn-info"><i class="fa fa-skype"></i> Skype</a>
-                    <a type="button" class="btn btn-success" href="#"><i class="fa fa-envelope-o"></i> Email</a>
                 </div>
             </div>
 
@@ -139,45 +154,9 @@ function myFunction() {
               <h3>Send us your Feedback</h3>
            </div>
             <div class="col-xs-12 col-sm-9" ng-controller="FeedbackController">
-                <form action="feedret.jsp" class="form-horizontal" role="form" name="feedbackForm" /*ng-submit="sendFeedback()" */novalidate>
+                <form action="feedret.jsp" class="form-horizontal" role="form" name="feedbackForm" novalidate>
                     <div class="form-group" ng-class="{'has-error':feedbackForm.username.$error.required && !feedbackForm.username.$pristine}">
-                      <!--two way data-binding-->
-                        <!--<label for="username" class="col-sm-2 control-label"> Username</label>
-                        <div class="col-sm-10">
-                        <input type="text" class="form-control" id="U_name" name="U_name" placeholder="Enter User Name" ng-model="feedback.username" required>
-                        <span ng-show="feedbackForm.username.$error.required && !feedbackForm.username.$pristine" class="help-block">Username is required</span></div>
-                    <!--bootstrap validation support-->
-                      <!-- </div>-->
-
-                    <!--<div class="form-group">
-                        <label for="tel" class="col-sm-2 control-label">Phone</label>
-                        <div class="col-sm-10">
-                        <input type="tel" class="form-control" id="Phone" name="Phone" placeholder="Tel. number" ng-model="feedback.tel.number">
-                        </div>
-                    </div>
-                    <div class="form-group" ng-class="{'has-error has-feedback':feedbackForm.email.$invalid && !feedbackForm.email.$pristine}">
-                        <label for="email" class="col-sm-2 control-label">Email</label>
-                        <div class="col-sm-10">
-                            <input type="email" class="form-control" id="Email" name="Email" placeholder="Email" ng-model="feedback.email" required>
-                            <span ng-show="feedbackForm.email.$invalid && !feedbackForm.email.$pristine" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
-							<span ng-show="(feedbackForm.email.$invalid||feedbackForm.email.$error.required) && !feedbackForm.email.$pristine" class="help-block">Enter valid email address.</span>
-                        </div>
-                    </div>
-                    <div class="form-group" ng-class="{invalidChannelSelection}">
-                       <div class="checkbox col-sm-5 col-sm-offset-2">
-                            <label class="checkbox-inline">
-                                <input type="checkbox" name="approve" value="" ng-model="feedback.agree">
-                                <strong>May we contact you?</strong>
-                            </label>
-                        </div>
-                        <div class="col-sm-3 col-sm-offset-1" ng-show="feedback.agree">
-                            <select class="form-control" ng-model="feedback.mychannel" ng-options="channel.value as channel.label for channel in channels">
-							   <option value="">Tel.</option>
-                               <option>Email</option>
-                            </select>
-							<span ng-show="invalidChannelSelection" class="help-block">Select an option.</span>
-                        </div>
-                    </div>-->
+                      
                     <div class="form-group">
                         <label for="feedback" class="col-sm-2 control-label">Your Feedback</label>
                         <div class="col-sm-10">
@@ -192,14 +171,6 @@ function myFunction() {
                     </div>
                 </form>
             </div>
-             <!--<div class="col-xs-12 col-sm-3">
-               <h3>Your Current Feedback:</h3>
-               <p>Username{{feedback.username}}</p>
-               <p>Contact Tel.:{{feedback.tel.number}}</p>
-               <p>Contact Email:{{feedback.email}}</p>
-               <p ng-show="feedback.agree">Contact by:{{feedback.mychannel}}</p>
-               <p>Comments: {{feedback.comments}}</p>
-             </div>-->
 
             </div>
        </div>
@@ -211,7 +182,7 @@ function myFunction() {
                 <div class="col-xs-5 col-xs-offset-1 col-sm-2 col-sm-offset-1">
                     <h5>Links</h5>
                     <ul class="list-unstyled">
-                        <li><a href="aboutus.html">AboutUs</a></li>
+                        <li><a href="aboutus.jsp">AboutUs</a></li>
                         <li><a href="faqs.html">FAQS</a></li>
                         <li><a href="terms.html">Terms and Policy</a></li>
                     </ul>

@@ -1,0 +1,124 @@
+<%@page import="java.io.*"%>
+<%@ page import="java.sql.*"%>
+<%
+	try { 
+	Class.forName("com.mysql.jdbc.Driver"); 
+	Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/inq","root","maaa"); 
+	
+	String Email=(String)session.getAttribute("mail"); 
+	
+	   Statement st=con.createStatement();
+	   ResultSet rs;
+%>
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<script src="bower_components/jquery/dist/jquery.min.js"></script>
+		<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/bootstrap-social.css" rel="stylesheet">
+		<link href="css/bootstrap-theme.min.css" rel="stylesheet">
+		<link href="css/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
+		<link href="css/app.css" rel="stylesheet">
+		
+	</head>
+	<body>
+	<div class="topnav" id="myTopnav">
+			    <a href="index.html" class="active" >INQUISITIVE MINDS</a>
+                <a href="questions.html">Home</a>
+                <a href="profile.html">Profile</a>
+				<a href="feedback.html">Contact Us</a>
+				<a href="index.html" style="float:right">Logout</a>
+				<a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
+	</div>
+
+<script>
+function myFunction() {
+    var x = document.getElementById("myTopnav");
+    if (x.className === "topnav") {
+        x.className += " responsive";
+    } else {
+        x.className = "topnav";
+    }
+}
+</script>
+
+<div class="history">
+		<div class="row">
+				<div class="col-xs-12">
+				<span class="glyphicon glyphicon-pencil" placeholder="Write Something"></span>
+				</div>
+				
+				
+				
+				
+				<% rs=st.executeQuery("count Q_id from query where Email='"+Email+"'");%>
+								<div class="col-xs-9">
+                <li>Number of queries you asked :
+				<%=rs.getString(1)%></li>
+				
+				
+				
+				
+				
+				
+				
+		</div>
+		
+		</div>
+		
+<footer class="footerFormat">
+				<div class="row">
+					<div class="col-sm-12 col-xs-12">
+						<div class="col-xs-12 col-sm-2 col-sm-offset-1">
+							<h5>Links</h5>
+							<ol class="list-unstyled listFormat">
+							<!--	<li><a href="#">About</a></li>
+								<li><a href="#">FAQs</a></li>-->
+								<li><a href="aboutus.html">About Us</a></li>
+								<li><a href="terms.html">Terms and Conditions</a></li>
+								<li><a href="FAQs.html">FAQs</a></li>
+							</ol>
+						</div>
+						<div class="col-xs-3 col-sm-5">
+							<ol class="list-unstyled ">
+								<li><a href="#"></a></li>
+								<li><a href="#"></a></li>
+								<li><a href="#"></a></li>
+								<li><a href="#"></a></li>
+							</ol>
+						</div>
+						<div class="col-xs-12 col-sm-4">
+							 <!--<div class="nav navbar-nav" style="padding: 40px 10px;">-->
+								<a class="btn btn-social-icon btn-facebook" href="http://www.facebook.com/profile.php?id="><i class="fa fa-facebook fa-2x"></i></a>
+								<a class="btn btn-social-icon btn-twitter" href="http://twitter.com/"><i class="fa fa-twitter fa-2x"></i></a>
+								<a class="btn btn-social-icon btn-whatsapp" href="http://whatsapp.com/"><i class="fa fa-whatsapp fa-2x"></i></a>
+								<a class="btn btn-social-icon btn-youtube" href="http://youtube.com/"><i class="fa fa-youtube fa-2x"></i></a>
+							</div>
+						</div>
+
+					</div>
+				</div>
+                <div class="col-xs-12">
+                    <p align=center>© Copyright</p>
+                </div>
+
+    </footer>
+	
+	
+	<% 
+	con.close();
+	
+	   }
+	   
+	   catch(Exception ex)
+                       {
+                      ex.printStackTrace();
+                        }
+						
+%>						
+	
+	</body>
+	</html>

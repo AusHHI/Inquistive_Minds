@@ -1,0 +1,66 @@
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<script src="bower_components/jquery/dist/jquery.min.js"></script>
+		<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/bootstrap-social.css" rel="stylesheet">
+		<link href="css/bootstrap-theme.min.css" rel="stylesheet">
+		<link href="css/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
+		<link href="css/app.css" rel="stylesheet">
+		<link href="css/que-style.css" rel="stylesheet">
+	</head>
+	<body>
+	<div class="topnav" id="myTopnav">
+			    <a href="index.html" class="active" >INQUISITIVE MINDS</a>
+                <a href="questions.jsp">Home</a>
+				<a href="history.jsp">History</a>
+                <a href="profile.jsp">Profile</a>
+				<a href="feedback.jsp">Contact Us</a>
+				<% rs=st.executeQuery("select U_name from admin where Email='"+Email+"'");
+				if(rs.next())
+				{
+				%>
+				<strong>WELCOME :<%=rs.getString(1)%></strong>
+				<%
+				}
+				else
+				{
+					out.write("under div3");
+				}
+				%>
+				<a href="index.html" style="float:right">Logout</a>
+				<a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
+			</div>
+
+<script>
+function myFunction() {
+    var x = document.getElementById("myTopnav");
+    if (x.className === "topnav") {
+        x.className += " responsive";
+    } else {
+        x.className = "topnav";
+    }
+}
+</script>
+             <p>Check Questions<a href="admin_que.html"> Questions</a></p><br>
+			 <p>Check Answers <a href="admin_ans.html"> Answers </a></p><br>
+			 <p>Check Feedbacks<a href="admin_feed.html"> Feedbacks</a></p><br>
+             <!--br><button type="button" class="btn btn-primary" style="margin-left:500px">Feedbacks</button>
+	         &nbsp; &nbsp; &nbsp; <button type="button" class="btn btn-primary" onclick="location.hrefadmin_que.html">Questions</button><br><br>
+			 <div class="admin">
+			 <div class="row">
+				<div class="col-xs-12">
+					 <h3>Feedbacks</h3><hr>
+				</div>
+		     </div>
+             <!--div class="row">
+				<div class="col-xs-12">
+					 <h3>Questions</h3>
+					 <hr>
+				</div>
+		     </div>
+             </div-->			 
+	</body>
+	</html>

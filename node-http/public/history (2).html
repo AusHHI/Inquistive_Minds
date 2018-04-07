@@ -1,0 +1,103 @@
+<%@page import="java.io.*"%>
+<%@ page import="java.sql.*"%>
+<%
+	try { 
+	Class.forName("com.mysql.jdbc.Driver"); 
+	Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/inq","root","maaa"); 
+
+
+	  
+	    ResultSet rs;
+	  
+%>
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		
+		<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+		
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+		
+		<script src="js/bootstrap.min.js"></script>
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="https://formden.com/static/cdn/bootstrap-iso.css" rel="stylesheet ">
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" rel="stylesheet ">
+		<link href="css/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
+		<link href="app1.css" rel="stylesheet">
+
+	</head>
+	<body>
+	
+
+
+<div class="history2">
+		<div class="row">
+				<form action="blah.jsp" method="post" name="f1" id="f1">
+							<div class="col-xs-12" style="padding: 10px 10px 10px 10px;">
+							<div class="col-xs-5">
+								<div class="input-group">
+								<input type="text" name="routine" id="routine" placeholder="Schedule the task" required></div></div>
+								<div class="col-xs-5">
+								 <div class="input-group">
+        <div class="input-group-addon">
+         <i class="fa fa-calendar">
+         </i>
+        </div>
+        <input id="myTimeStart" name="myTimeStart" placeholder="yyyy-mm-dd" type="text" required/>
+       </div></div>
+								<div class=" col-xs-2">
+								<input type="submit" name="post" id="post" value="ScheduleIt" class="btn btn-info"></div></div></form>
+								
+								<% rs=st.executeQuery("select Schedu,tom from neww where Email='"+Email+"'");
+								
+							%>
+							<%while(rs.next()){%>
+								<div class="col-xs-12">				
+								<i class="fa fa-calender"></i>
+				
+				
+								
+								<!--Include the schedule here-->
+								<li><%=rs.getString(1)%>:<%=rs.getDate(2)%></li>
+							
+				</div>
+				<%} //while loop ends %>
+		</div>
+		</div>
+		
+
+                <div class="col-xs-12">
+                    <p align=center>Created by Ayushi</p>
+                </div>
+
+	<% 
+	con.close();
+	
+	   }
+	   
+	   catch(Exception ex)
+                       {
+                      ex.printStackTrace();
+                        }
+						
+%>	
+		
+
+<script>
+	$(document).ready(function(){
+		var date_input=$('input[name="myTimeStart"]');
+		var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+		date_input.datepicker({
+			format: 'mm/dd/yyyy',
+			container: container,
+			todayHighlight: true,
+			autoclose: true,
+		})
+	})
+</script>
+			
+	
+	</body>
+	</html>

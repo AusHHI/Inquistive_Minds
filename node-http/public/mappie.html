@@ -1,0 +1,92 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Map Of Our Place</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/bootstrap-theme.min.css" rel="stylesheet">
+		<link href="css/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
+		<link href="css/bootstrap-social.css" rel="stylesheet">
+		<link href="css/app.css" rel="stylesheet">
+    <style>
+   
+      #map {
+        height: 80%;
+		border: 10px solid #888;
+		 margin: 2px 2px 2px 2px;
+        padding: 2px 2px 2px 2px;
+      }
+      html, body {
+        height: 100%;
+        margin: 0px 0px 0px 0px;
+        padding: 0px 0px 0px 0px;
+      }
+    </style>
+  </head>
+  <body>
+  <div class="topnav" id="myTopnav">
+			    <a href="index.html">INQUISITIVE MINDS</a>
+                <a href="questions.jsp">Home</a>
+				<a href="history.jsp">History</a>
+                <a href="profile.jsp">Profile</a>
+				<a href="feedback.jsp" class="active">Contact Us</a>
+				<a href="logout.jsp" style="float:right">Logout</a>
+				<a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>	
+			</div>
+<script>
+function myFunction() {
+    var x = document.getElementById("myTopnav");
+    if (x.className === "topnav") {
+        x.className += " responsive";
+    } else {
+        x.className = "topnav";
+    }
+}
+</script>
+    <div id="map"></div>
+    <script>
+      function initMap() {
+        var myLatlng = {lat: 26.402842699, lng: 75.8721374000};
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 4,
+          center: myLatlng
+        });
+
+        var marker = new google.maps.Marker({
+          position: myLatlng,
+          map: map,
+          title: 'Click to zoom'
+        });
+
+        map.addListener('center_changed', function() {
+          // 3 seconds after the center of the map has changed, pan back to the
+          // marker.
+          window.setTimeout(function() {
+            map.panTo(marker.getPosition());
+          }, 3000);
+        });
+
+        marker.addListener('click', function() {
+          map.setZoom(8);
+          map.setCenter(marker.getPosition());
+        });
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAsY14UDVi6pSIoYlhki21oX3XwDrbK8oI&callback=initMap">
+    </script>
+	<footer class="footerFormat">
+					<div class="col-sm-12 col-xs-12">
+										<a href="aboutus.jsp" style="margin-right:5px">About us</a>
+										<a href="FAQs.html" style="margin-right:5px">FAQs</a>
+										<a href="terms.html" >Terms&Conditions </a>
+                   </br> <p align=center>© Copyright</p>
+               </div>
+				
+
+    </footer>
+  </body>
+</html>

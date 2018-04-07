@@ -22,7 +22,7 @@
 		<link href="css/app.css" rel="stylesheet">
 		<link href="css/que-style.css" rel="stylesheet">
 	</head>
-	<body background-image="/images/que.jpg">
+	<body>
 	<div class="topnav" id="myTopnav">
 			    <a href="index.html" class="active" >INQUISITIVE MINDS</a>
                 <a href="questions.jsp">Home</a>
@@ -61,100 +61,48 @@ function myFunction() {
     }
 }
 </script>
-	<div class="container clearfix">
-		<div class="row">
-				<div class="col-xs-12">
-					 <h3>Curious? Just ask!</h3>
-					 <hr>
-				</div>
-		</div>
-				
+            <div class="container clearfix" style="color:Black">
+             
 				<div class="chat">
-						<form action="proclient.jsp" method="post" id="sendMessage" class="chat-message clearfix">
-							<div class="col-xs-12" style="padding: 40px 40px 40px 40px;">
-								<div class="col-xs-9">
-								<textarea class="que-text"  name="message-to-send" id="message-to-send" placeholder="Write your question here" ></textarea></div>
-								<div class="col-xs-3">
-								<input type="submit" value="Send"></input></div><br></br></div></form>
-								
-								
-								<form name="f1" action="proans.jsp" method= "post">
-								<% rs=st.executeQuery("select Q_id,question,date from query where Email<>'"+Email+"'");
+							<% rs=st.executeQuery("select question,date from query where Email<>'"+Email+"'");
 								
 							%>
+									<%while(rs.next()){%>
+								<form name="f1" action="adqus.jsp" method= "post">
 								
-								<%while(rs.next()){%>
-								
-										<% if(rs.getString(1)!=null){
+				<% if(rs.getString(1)!=null){
                 %>
 								<div class="que row col-xs-12" style= "color:black; margin: 20px 20px 20px 20px;">
 								
 								<ul class="list">
-								<div class="col-xs-9">
+								
 								<!--Include the question session here-->
-								<li><%=rs.getDate(3)%>:<%=rs.getString(2)%></li>
+								<li><%=rs.getDate(2)%>:<%=rs.getString(1)%></li>
+								<textarea rows="1" cols="20" name="ans" id="<%=rs.getString(1)%>" placeholder="Write your answer" required></textarea>
+								<button type="submit" value="<%=rs.getString(1)%>" name="answ" id="<%=rs.getString(1)%>" class="btn btn-info">Delete</button>
+								</ul>
 								</div>
-								<div class="col-xs-3">
-								<button onclick="document.getElementById('answer').style.display='block'"class="btn btn-warning text-right" name="answ" type="button">Answer</button></div>
-								 </ul>
 								
+								<% }// if closes %>
 								
-								<div id="answer" class="modal">
-								<div class="modal-content">
-									<div class="container">
-										<span onclick="document.getElementById('answer').style.display='none'" class="close text-right">&times;</span>
-											<div class="modal-body">
-											<!--%out.write(Q_id);%-->
-											<textarea rows="5" cols="50" name="ans" id="ans"></textarea></input></div>
-						
-											<div class="col-xs-12">
-												<div class="col-xs-10">
-													<!---upload/share files-->
-												</div>
-												<div class="col-xs-2">
-													<button type="button" class="btn btn-info">Post</button>
-												</div>
-											</div>
+						</form>
+						<%} //while loop ends %>
+								
 				</div>
 			</div>
-		</div>
-		</div>
-						<div class="block-ans">
-						<!---view the answer given-->
-						</div>
-						
-						<% }// if closes %>
-						<%} //while loop ends %>
-
-						</form>
-						
-						<!-- end chat-message -->
-				</div>
-				<!-- end chat -->
-		</div>
-		<!-- end container -->
-		
-		
-
-
-	<footer class="footerFormat">
+			<!-- end chat-message -->
+			<footer class="footerFormat">
 				<div class="row">
 					<div class="col-sm-12 col-xs-12">
 						<div class="col-xs-12 col-sm-2 col-sm-offset-1">
 							<h5>Links</h5>
 							<ol class="list-unstyled listFormat">
-										<li><a href="aboutus.html">About us</a></li>
+										<li><a href="aboutus.jsp">About us</a></li>
 										<li><a href="FAQs.html">FAQs</a></li>
 										<li><a href="terms.html">Terms&Conditions </a></li>
 							</ol>
 						</div>
-						<!--div class="col-xs-3 col-sm-5">
-							<ol class="list-unstyled ">
-								<li><a href="FAQs.html"></a></li>
-								<li><a href="aboutus.html"></a></li>
-								<li><a href="terms.html"></a></li>
-					</ol>
-						</div-->
+						
 						<div class="col-xs-12 col-sm-4" >
 								<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-social-icon btn-facebook" href="http://www.facebook.com/"><i class="fa fa-facebook fa-2x"></i></a>
 								<a class="btn btn-social-icon btn-twitter" href="http://twitter.com/"><i class="fa fa-twitter fa-2x"></i></a>
@@ -168,7 +116,7 @@ function myFunction() {
                    </br> <p align=center>© Copyright</p>
                 </div>
 
-    </footer>
+            </footer>
 	
 	<% 
 	con.close();

@@ -1,0 +1,65 @@
+<html>
+<head>
+	<title>Upload Product</title>
+
+	<link href="UploadAd.css" rel="stylesheet" type="text/css"/>
+	<link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
+    <link href="HeaderSideFooter.css" rel="stylesheet" type="text/css" />
+	<meta name="viewpoint" content="width=device-width initial-scale=1">
+</head>
+
+<body>
+		
+		<div id=header>	
+		<div id="logo">
+		<a href="HomePageAfterLogin.html"><img src="logo.png" alt="All Banasthali X" height="90" width="250"></a>
+		</div>
+
+		<button id="searchbutton"><i class="fa fa-search"></i></button>
+		<form action=""><input type="search" id="search" placeholder="Enter keyword"/>
+		
+		</form>
+            <div id="tag">Buy and sell within your college campus
+		</div>
+		<div id=navbar>
+			<ul>
+				<li><a href="HomePage.html">Logout</a></li>
+				<li><a href="UserAccount.html">My Account</a></li>
+			</ul>
+		</div>
+	</div>
+
+	
+
+	<div id="sidemenu">
+		<ul>	<!--Side menu-->
+			<li><a href="HomePageAfterLogin.html">Home</a></li>
+            <li><a href="ProductsPage.jsp">Products</a></li>
+            <li><a href="BidPage.html">Bid Section</a></li>
+			<li><a href="AboutUsAfterLogin.html">About Us</a></li>
+			<li><a href="FAQAfterLogin.html">FAQ</a></li>
+			<li><a href="Feedback.html">Feedback</a></li>	
+			<li><a href="HelpAfterLogin.html">Help</a></li>
+		</ul>
+	</div>
+    <h1  id="pageHeading">Upload Image</h1>
+	<div id="content"> 
+            <p>Upload image for your product:</p>
+            <form name="form1" method="post" enctype="multipart/form-data" action="UploadImage.jsp">
+ 				<input  type="file" accept="image/*" id="upload1" name="ImageFile" /><br/>
+                                <input type="submit" name="submit" value="submit" />
+        
+			</form>
+
+	</div>
+    
+    <br />
+    <br />
+    <br />
+
+	<div id="footer">
+		&copy; 2018 www.allbanasthalix.com
+	</div>
+</body>
+
+</html>

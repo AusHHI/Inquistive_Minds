@@ -5,7 +5,7 @@ quora.controller('SignUpFormController',['$scope',function($scope){
     $scope.userRegex ='[a-zA-Z]{8,}';
     $scope.userRegex='[a-zA-Z0-9]{8,}';
 
-    $scope.register = function (user){
+    $scope.submitSignUp = function (user){
       console.log(user);
     };
 
@@ -18,4 +18,10 @@ quora.controller('SignInFormController',['$scope',function($scope){
       console.log(user);
     };
 
+}]);
+
+quora.controller('ProfileController',['$scope',function($scope){
+	$scope.profileSubmit = function(user){
+		console.log(user);
+	}
 }]);
